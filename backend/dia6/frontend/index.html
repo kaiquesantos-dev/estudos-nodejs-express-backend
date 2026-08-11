@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mini Rede Social</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="board-header">
+    <div class="pin-badge" aria-hidden="true">📌</div>
+    <div>
+      <h1>mini rede social</h1>
+      <p class="subtitle">um mural para as suas primeiras publicações</p>
+    </div>
+  </header>
+
+  <main class="board">
+
+    <section class="card compose-card" aria-labelledby="compose-title">
+      <h2 id="compose-title" class="card-eyebrow">novo recado</h2>
+
+      <div class="field-row">
+        <label for="user-select">postando como</label>
+        <div class="user-picker">
+          <select id="user-select"></select>
+          <button id="new-user-btn" type="button" class="ghost-btn">+ usuário</button>
+        </div>
+      </div>
+
+      <form id="new-user-form" class="inline-form hidden">
+        <input id="new-user-name" type="text" placeholder="nome" required />
+        <input id="new-user-username" type="text" placeholder="username" required />
+        <button type="submit" class="primary-btn small">criar</button>
+        <button type="button" id="cancel-user-btn" class="ghost-btn small">cancelar</button>
+      </form>
+
+      <form id="new-post-form">
+        <textarea id="new-post-text" placeholder="o que você aprendeu hoje?" required></textarea>
+        <div class="compose-footer">
+          <span id="compose-hint" class="hint"></span>
+          <button type="submit" class="primary-btn">fixar no mural</button>
+        </div>
+      </form>
+    </section>
+
+    <div id="status-banner" class="status-banner hidden" role="status"></div>
+
+    <section id="feed" class="feed" aria-live="polite">
+      <p class="loading">carregando o mural…</p>
+    </section>
+
+  </main>
+
+  <template id="post-template">
+    <article class="card post-card">
+      <span class="pin" aria-hidden="true"></span>
+      <header class="post-header">
+        <span class="post-author"></span>
+        <time class="post-time"></time>
+      </header>
+      <p class="post-text"></p>
+      <div class="post-actions">
+        <button class="reaction-btn like-btn" data-type="like">
+          <span class="reaction-icon">▲</span> curtir <span class="count like-count"></span>
+        </button>
+        <button class="reaction-btn dislike-btn" data-type="dislike">
+          <span class="reaction-icon">▼</span> não curtir <span class="count dislike-count"></span>
+        </button>
+      </div>
+      <ul class="comment-list"></ul>
+      <form class="comment-form">
+        <input type="text" class="comment-input" placeholder="comentar…" required />
+        <button type="submit" class="ghost-btn small">enviar</button>
+      </form>
+    </article>
+  </template>
+
+  <template id="comment-template">
+    <li class="comment">
+      <span class="comment-author"></span>
+      <span class="comment-text"></span>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
